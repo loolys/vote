@@ -2,8 +2,15 @@
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
+const bodyParser = require('body-parser');
+
+const users = require('./routes/users');
 
 const app = express();
+
+app.use(bodyParser.json());
+
+app.use('/api/users', users);
 
 // Setup logger
 app.use(morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] :response-time ms'));
